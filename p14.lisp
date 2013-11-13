@@ -1,20 +1,12 @@
-;;;; Replicate the elements of a list a given number of times.
+;;;; Duplicate the elements of a list.
 ;;;; Example:
-;;;; * (repli '(a b c) 3)
-;;;;   (A A A B B B C C C)
+;;;; * (dupli '(a b c c d))
+;;;;   (A A B B C C C C D D)
 
 ;; @author Ashwin Ramesh
 
-(defun dupli (L N)
+(defun dupli (L)
   (cond
     ((null L) nil)
-    ((<= N 0) nil)
     (T
-      (append (do-dupli (first L) N) (dupli (rest L) N)))))
-
-(defun do-dupli (E N)
-  (cond
-    ((= N 1)
-     (list E))
-    (T
-      (append (list E) (do-dupli E (- N 1))))))
+      (append (list (first L) (first L)) (dupli (rest L))))))
