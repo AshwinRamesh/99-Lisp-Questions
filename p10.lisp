@@ -11,10 +11,13 @@
 
 (load "p09.lisp");
 
-(defun encode (L)
+(defun do-encode (L)
   (cond
     ((null L) nil)
     ((null (rest L))
       (list (cons (length (first L)) (list (first (first L))))))
     (T
-      (append (encode (list (first L))) (encode (rest L))))))
+      (append (do-encode (list (first L))) (do-encode (rest L))))))
+
+(defun encode(L)
+  (do-encode (pack L)))
